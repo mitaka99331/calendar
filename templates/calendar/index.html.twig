@@ -1,0 +1,202 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mx-auto py-20">
+        <div class="wrapper bg-white rounded shadow w-full">
+            <div class="header flex justify-between border-b p-2">
+                <span class="text-3xl font-bold text-bl">
+                  {{ currentDate.format('Y M') }}
+                    {{ currentDate.format('t') }}
+                </span>
+                <div class="flex">
+                    {% if previousDateLink %}
+                        <a type="button" href="{{ previousDateLink }}"
+                           class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            <svg class="w-6 h-6 text-white" aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13"/>
+                            </svg>
+                        </a>
+                    {% else %}
+                        <button type="button" disabled
+                                class="text-white bg-gray-400 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2">
+                            <svg class="w-6 h-6 text-white" aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13"/>
+                            </svg>
+                        </button>
+                    {% endif %}
+
+                    {% if nextDateLink %}
+                        <a type="button" href="{{ nextDateLink }}"
+                           class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            <svg class="w-6 h-6 text-white" aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1"/>
+                            </svg>
+                        </a>
+                    {% else %}
+                        <button type="button" disabled
+                                class="text-white bg-gray-400 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2">
+                            <svg class="w-6 h-6 text-white" aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1"/>
+                            </svg>
+                        </button>
+                    {% endif %}
+                </div>
+            </div>
+            <table class="w-full">
+                <thead>
+                <tr>
+
+                    <th class="p-2 border-r h-10 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 xl:text-sm text-xs">
+                        <span class="xl:block lg:block md:block sm:block hidden">Monday</span>
+                        <span class="xl:hidden lg:hidden md:hidden sm:hidden block">Mon</span>
+                    </th>
+                    <th class="p-2 border-r h-10 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 xl:text-sm text-xs">
+                        <span class="xl:block lg:block md:block sm:block hidden">Tuesday</span>
+                        <span class="xl:hidden lg:hidden md:hidden sm:hidden block">Tue</span>
+                    </th>
+                    <th class="p-2 border-r h-10 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 xl:text-sm text-xs">
+                        <span class="xl:block lg:block md:block sm:block hidden">Wednesday</span>
+                        <span class="xl:hidden lg:hidden md:hidden sm:hidden block">Wed</span>
+                    </th>
+                    <th class="p-2 border-r h-10 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 xl:text-sm text-xs">
+                        <span class="xl:block lg:block md:block sm:block hidden">Thursday</span>
+                        <span class="xl:hidden lg:hidden md:hidden sm:hidden block">Thu</span>
+                    </th>
+                    <th class="p-2 border-r h-10 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 xl:text-sm text-xs">
+                        <span class="xl:block lg:block md:block sm:block hidden">Friday</span>
+                        <span class="xl:hidden lg:hidden md:hidden sm:hidden block">Fri</span>
+                    </th>
+                    <th class="p-2 border-r h-10 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 xl:text-sm text-xs">
+                        <span class="xl:block lg:block md:block sm:block hidden">Saturday</span>
+                        <span class="xl:hidden lg:hidden md:hidden sm:hidden block">Sat</span>
+                    </th>
+                    <th class="p-2 border-r h-10 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 xl:text-sm text-xs">
+                        <span class="xl:block lg:block md:block sm:block hidden">Sunday</span>
+                        <span class="xl:hidden lg:hidden md:hidden sm:hidden block">Sun</span>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for row, days in calendar %}
+                <tr class="text-center h-20">
+                    {% for day in days %}
+
+                        {{ component('CalendarDayComponent', {
+                            day: day,
+                        }) }}
+
+
+                    {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Main modal -->
+    <div id="appointment-modal" tabindex="-1"
+        {% if not form.vars.valid %}
+            aria-hidden="false"
+            class="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full flex justify-center items-center"
+        {% else %}
+            aria-hidden="true"
+            class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
+        {% endif %}
+
+    >
+        <div class="bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 -z-40"
+             data-modal-target="appointment-modal" data-modal-hide="appointment-modal"></div>
+        <div class="relative w-full max-w-md max-h-full">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <button type="button"
+                        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
+                        data-modal-hide="appointment-modal">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                              clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+                <div class="px-6 py-6 lg:px-8">
+                    <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Create an appointment</h3>
+
+                    {{ form_start(form) }}
+
+                    <div>
+                        <label for="{{ field_name(form.name) }}"
+                               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ field_label(form.name) }}</label>
+
+                        <input type="text"
+                               name="{{ field_name(form.name) }}"
+                               id="{{ field_name(form.name) }}"
+                               value="{{ field_value(form.name) }}"
+                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                               required>
+                        <div class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form_errors(form.name) }}</div>
+
+                    </div>
+
+                    <div class="py-4">
+                        <label for="{{ field_name(form.email) }}"
+                               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ field_label(form.email) }}</label>
+                        <input type="email" name="{{ field_name(form.email) }}"
+                               id="{{ field_name(form.email) }}"
+                               value="{{ field_value(form.email) }}"
+                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                               placeholder="name@company.com" required>
+                        <div class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form_errors(form.email) }}</div>
+
+                    </div>
+                    <div class="py-4">
+                        <label for="{{ field_name(form.phone) }}"
+                               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ field_label(form.phone) }}</label>
+                        <input type="text" name="{{ field_name(form.phone) }}"
+                               id="{{ field_name(form.phone) }}"
+                               value="{{ field_value(form.phone) }}"
+                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                               required>
+                        <div class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form_errors(form.phone) }}</div>
+                    </div>
+
+                    <div class="py-4">
+                        <label for="date"
+                               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ field_label(form.date) }}</label>
+                        <input type="text" name="{{ field_name(form.date) }}"
+                               id="date"
+                               readonly="readonly"
+                               value="{{ field_value(form.date)|date('Y-m-d H:i') }}"
+                               class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                               required>
+                        <div class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form_errors(form.date) }}</div>
+                    </div>
+
+                    {{ form_rest(form) }}
+                    <div class="py-6 flex justify-center">
+                        <button type="submit"
+                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            Submit
+                        </button>
+
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
